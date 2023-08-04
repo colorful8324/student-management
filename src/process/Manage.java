@@ -5,11 +5,6 @@ import java.io.IOException;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.*;
-
-import exception.AddressException;
-import exception.DateOfBirthException;
-import exception.HeightException;
-import exception.NameException;
 import model.*;
 
 public class Manage {
@@ -49,7 +44,7 @@ public class Manage {
     }
 
     // option 1
-    public void addStudent() throws InputMismatchException {
+    public void addStudent() throws Exception {
         try {
             inputName();
             inputDateOfBirth();
@@ -65,7 +60,7 @@ public class Manage {
             studentArray[count++] = newStudent;
             System.out.println(newStudent);
         }
-        catch (InputMismatchException exc) {
+        catch (Exception exc) {
             System.out.println("Invalid input. Please enter the student's information again.");
             sc.nextLine();
             addStudent();
@@ -74,77 +69,73 @@ public class Manage {
 
     // // name
     public void inputName() {
-        try {
-            System.out.println("Enter student's name: ");
-            name = sc.nextLine();
-            if (!validate.isValidName(name)) {
-                throw new NameException("Student's name should not be null and should be less than 100 letters");
-            }
-        }
-        catch (NameException e) {
-            System.out.println(e.getMessage());
+        System.out.println("Enter student's name: ");
+        name = sc.nextLine();
+        if (!validate.isValidName(name)) {
+            System.out.println("Student's name should not be null and should be less than 100 letters");
             inputName();
         }
     }
 
     // // date of birth
-    public void inputDateOfBirth() {
+    public void inputDateOfBirth() throws DateTimeException {
         try {
             System.out.println("Enter student's date of birth: ");
             String stringDateOfBirth = sc.nextLine();
             dateOfBirth = LocalDate.parse(stringDateOfBirth);
             if (!validate.isValidDateOfBirth(dateOfBirth)) {
-                throw new DateOfBirthException("Student's date of birth should not be null and year of birth should be greater than or equal to 1900.");
+                System.out.println("Student's date of birth should not be null and year of birth should be greater than or equal to 1900.");
+                inputDateOfBirth();
             }
         }
         catch (DateTimeException e) {
             System.out.println("Invalid date time format, should be yyyy-mm-dd");
             inputDateOfBirth();
         }
-        catch (DateOfBirthException e) {
-            System.out.println(e.getMessage());
-            inputDateOfBirth();
-        }
     }
 
     // // address
     public void inputAddress() {
-        try {
-            System.out.println("Enter student's address: ");
-            address = sc.nextLine();
-            if (!validate.isValidAddress(address)) {
-                throw new AddressException("Student's address should be less than 300 letters");
-            }
-        }
-        catch (AddressException e) {
-            System.out.println(e.getMessage());
+        System.out.println("Enter student's address: ");
+        address = sc.nextLine();
+        if (!validate.isValidAddress(address)) {
+            System.out.println("Student's address should be less than 300 letters");
             inputAddress();
         }
     }
 
     // // height
-    public void inputHeight() {
+    public void inputHeight() throws InputMismatchException {
         try {
             System.out.println("Enter student's height: ");
             height = sc.nextDouble();
             sc.nextLine();
             if (!validate.isValidHeight(height)) {
-                throw new HeightException("Student's height should be between 50.0 and 300.0");
+                System.out.println("Student's height should be between 50.0 and 300.0");
+                inputHeight();
             }
         }
-        catch (HeightException e) {
-            System.out.println(e.getMessage());
+        catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter again.");
+            sc.nextLine(); // this consumes the invalid token
             inputHeight();
         }
     }
 
     // // weight
-    public void inputWeight() {
-        System.out.println("Enter student's weight: ");
-        weight = sc.nextDouble();
-        sc.nextLine();
-        if (!validate.isValidWeight(weight)) {
-            System.out.println("Student's weight should be between 5.0 and 1000.0");
+    public void inputWeight() throws InputMismatchException {
+        try {
+            System.out.println("Enter student's weight: ");
+            weight = sc.nextDouble();
+            sc.nextLine();
+            if (!validate.isValidWeight(weight)) {
+                System.out.println("Student's weight should be between 5.0 and 1000.0");
+                inputWeight();
+            }
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter again.");
+            sc.nextLine(); // this consumes the invalid token
             inputWeight();
         }
     }
@@ -170,23 +161,37 @@ public class Manage {
     }
 
     // // year of study
-    public void inputYearOfStudy() {
-        System.out.println("Enter student's year of study: ");
-        yearOfStudy = sc.nextInt();
-        sc.nextLine();
-        if (!validate.isValidYearOfStudy(yearOfStudy)) {
-            System.out.println("Student's year of study should not be null and should be 4-digit number, starting from 1990");
+    public void inputYearOfStudy() throws InputMismatchException {
+        try {
+            System.out.println("Enter student's year of study: ");
+            yearOfStudy = sc.nextInt();
+            sc.nextLine();
+            if (!validate.isValidYearOfStudy(yearOfStudy)) {
+                System.out.println("Student's year of study should not be null and should be 4-digit number, starting from 1990");
+                inputYearOfStudy();
+            }
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter again.");
+            sc.nextLine(); // this consumes the invalid token
             inputYearOfStudy();
         }
     }
 
     // // cpa
     public void inputCpa() {
-        System.out.println("Enter student's cpa: ");
-        cpa = sc.nextDouble();
-        sc.nextLine();
-        if (!validate.isValidCpa(cpa)) {
-            System.out.println("Student's cpa should be between 0.0 and 10.0");
+        try {
+            System.out.println("Enter student's cpa: ");
+            cpa = sc.nextDouble();
+            sc.nextLine();
+            if (!validate.isValidCpa(cpa)) {
+                System.out.println("Student's cpa should be between 0.0 and 10.0");
+                inputCpa();
+            }
+        }
+        catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter again.");
+            sc.nextLine(); // this consumes the invalid token
             inputCpa();
         }
     }

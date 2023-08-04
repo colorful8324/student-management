@@ -25,7 +25,7 @@ public class Main {
         System.out.println("8. Exit");
     }
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		Manage mn = new Manage();
 		while (true) {
 			showMenu();
