@@ -1,0 +1,4 @@
+Student [studentId=2002080602, school=HAU, yearOfStudy=2020, cpa=5.0, rank=AVERAGE, People [id=1, name=Phong, dateOfBirth=2002-06-08, address=15 Tan Khai, height=70.1, weight=70.1]]
+Student [studentId=1995131195, school=HUST, yearOfStudy=2013, cpa=9.0, rank=EXCELLENT, People [id=2, name=Duy, dateOfBirth=1995-11-13, address=624 Minh Khai, height=70.1, weight=70.1]]
+Student [studentId=1960040160, school=HUST, yearOfStudy=1978, cpa=9.0, rank=EXCELLENT, People [id=3, name=Tuan, dateOfBirth=1995-11-13, address=624 Minh Khai, height=70.1, weight=70.1]]
+Student [studentId=2002121202, school=AJC, yearOfStudy=2020, cpa=6.7, rank=GOOD, People [id=4, name=Thanh Nguyen, dateOfBirth=2002-12-12, address=11 Dong Thien, height=70.1, weight=70.1]]
